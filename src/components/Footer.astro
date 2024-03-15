@@ -1,0 +1,58 @@
+---
+import Twitter from '../icons/Twitter.astro'
+import Instagram from '../icons/Instagram.astro'
+import Linkedin from '../icons/Linkedin.astro'
+interface Props {}
+
+const menu = {
+    services: 'Services',
+    about: 'About',
+    works: 'Our Works',
+    contact: 'Contact'
+}
+
+const {} = Astro.props;
+---
+<footer aria-labelledby="footer-heading" class="relative border-t border-gray-900/10 py-24 sm:py-32  bg-[#272847]">
+    <div class="mx-auto mt-32 max-w-7xl px-6 lg:px-8">
+    <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div>
+            <img class="h-7" src="/MDIntelligence-white.png" alt="MDIntelligence">
+            <p class="text-white font-light mt-4">
+                MDIntelligence is your trusted partner in the digital development realm. With five years of experience, we excel in professionalism and commitment to crafting websites, mobile apps, PowerApps, and artificial intelligence solutions.
+            </p>
+
+            <div class="flex gap-10 mt-8">
+                <Twitter />
+                <Instagram />
+                <Linkedin />
+            </div>
+        </div>
+        <div class="mt-16 grid grid-cols-2 gap-2 xl:col-span-2 xl:mt-0">
+            <div class="md:grid md:grid-cols-2 md:gap-2">
+                <div>
+                    <h3 class="text-xl font-semibold leading-6 text-white">{menu.services}</h3>
+                    
+                </div>
+                <div class="mt-10 md:mt-0">
+                    <h3 class="text-xl font-semibold leading-6 text-white">{menu.about}</h3>                   
+                </div>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-2">
+                <div>
+                    <h3 class="text-xl font-semibold leading-6 text-white">{menu.works}</h3>
+                    
+                </div>
+                <div class="mt-10 md:mt-0">
+                    <h3 class="text-xl font-semibold leading-6 text-white">{menu.contact}</h3>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-right text-white mt-8">
+        <p>© 2024 | All Rights Reserved © 2024 MDIntelligence is a Web/App Design & Development Company since 2019.</p>
+        <p>Privacy Policy   |   Terms of Use</p>
+    </div>
+</div>
+</footer>

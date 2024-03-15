@@ -1,0 +1,112 @@
+---
+interface Props {
+}
+
+const {} = Astro.props;
+---
+
+<section id="our-works">
+    <div class="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">        
+        <h2 class="text-4xl text-center pt-10 lg:py-20 font-bold">Our Works</h2>
+        <div class="mx-auto max-w-7xl pb-24  sm:pb-10 lg:grid grid-flow-row-dense lg:grid-cols-3 lg:gap-x-8 lg:px-8 ">
+            <div class="mt-20 px-1 sm:mt-24 md:mx-auto  lg:mx-0 lg:mt-0 relative col-span-2">
+                <img id="image"
+                     class="rounded-xl top-0 left-0 w-full h-auto opacity-0 transition-opacity duration-1000 ease-in-out"
+                     src="https://uploads-ssl.webflow.com/5ea7fd4e3d52ef73804bc877/640942c2de5aef189fead7de_Screenshot-min-3.png"/>
+                <div  id="svgContainer" class="absolute bottom-0 text-center left-0 right-0 rounded-bl-xl p-6 bg-transparent">
+                    <svg class="h-2 w-2 inline fill-blue-700 mr-2" viewBox="0 0 6 6" aria-hidden="true">
+                        <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                    <svg class="h-2 w-2 inline fill-gray-300 mr-2" viewBox="0 0 6 6" aria-hidden="true">
+                        <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                    <svg class="h-2 w-2 inline fill-gray-300 mr-2" viewBox="0 0 6 6" aria-hidden="true">
+                        <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                </div>                
+            </div>
+
+            <div class="px-6 lg:px-0 lg:pt-4">
+                <div class="mx-auto max-w-2xl">
+                    <div class="max-w-lg">                       
+                        <h1 id="titleGallery" class="mt-10 text-4xl font-lato tracking-tight text-gray-900 sm:text-6xl ">
+                            Porject #1
+                        </h1>
+                        <p id="subtitleGallery" class="mt-6 text-lg text-gray-600">Anim aute id magna aliqua ad ad non deserunt
+                            sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat
+                            aliqua.</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32"></div>
+    </div>
+</section>
+
+
+<script type="module" client:load>
+    const images = [
+        "https://uploads-ssl.webflow.com/5ea7fd4e3d52ef73804bc877/640942c2de5aef189fead7de_Screenshot-min-3.png",
+        "https://uploads-ssl.webflow.com/5ea7fd4e3d52ef73804bc877/63f2acd1cdf34e09cfb7e39e_Screenshot-min-4.png",
+        "https://uploads-ssl.webflow.com/5ea7fd4e3d52ef73804bc877/63f1a16ac16726b1e653e8ca_Screenshot-min.png",
+        // Add more URLs as needed
+    ];
+
+    const information = [
+       {
+        title: ' Project #1',
+        subtitle: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.'
+       },
+       {
+        title: ' Project #2',
+        subtitle: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.'
+       },
+       {
+        title: ' Project #3',
+        subtitle: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.'
+       } 
+    ];
+    let currentIndex = 0;
+    const imageElement = document.getElementById('image');
+    const svgs = document.querySelectorAll('#svgContainer svg');
+    let title = document.querySelector('#titleGallery');
+    let subtitle = document.querySelector('#subtitleGallery');    
+    
+
+    // Initially, set the image opacity to 100 to ensure it is visible
+    imageElement.classList.remove('opacity-0');
+
+    function changeImage() {
+        // Add opacity class 0 to make the current image transparent
+        imageElement.classList.add('opacity-0');
+       
+        // title = information[currentIndex].title;
+        // subtitle = information[currentIndex].subtitle;
+
+        setTimeout(() => {
+            svgs[currentIndex].classList.remove('fill-blue-700');
+            svgs[currentIndex].classList.add('fill-gray-300');
+
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }            
+
+            svgs[currentIndex].classList.add('fill-blue-700');
+            svgs[currentIndex].classList.remove('fill-gray-300');
+
+            title.textContent  = information[currentIndex].title;            
+            subtitle.textContent = information[currentIndex].subtitle;
+            
+            imageElement.src = images[currentIndex];
+            // Wait for the image to load before making it visible
+            imageElement.onload = () => {
+                imageElement.classList.remove('opacity-0'); // Make the new image visible
+            };
+        }, 1000); // This time should match the duration of the opacity transition
+    }
+
+    // Starts image transition every 4 seconds (includes 1 second for transition duration)
+    setInterval(changeImage, 4000);
+</script>
